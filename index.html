@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIIBARATO - Achadinhos Exclusivos</title>
+
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+      
+      <div class="branding-area">
+        <button id="share-button" class="share-button" title="Compartilhar">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M13 4.5a2.5 2.5 0 11.702 4.283l-4.423 2.212a2.513 2.513 0 010 1.01l4.423 2.212a2.5 2.5 0 11-.53 1.06l-4.423-2.212a2.5 2.5 0 110-3.132l4.423-2.212A2.5 2.5 0 0113 4.5z" /></svg>
+        </button>
+        <img src="logo.png" alt="Logo KIIBARATO" class="main-logo">
+        <h2 class="main-title">Os Achadinhos Mais Exclusivos da Internet</h2>
+        <p class="main-subtitle">Qualidade e preço justo, selecionados a dedo para você!</p>
+      </div>
+
+      <main>
+        <div class="search-container">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
+          <input type="text" id="search-input" placeholder="Procure pela numeração...">
+        </div>
+        <div id="product-grid" class="product-grid"></div>
+        <p id="no-results" class="no-results-message" style="display: none;">Nenhum produto encontrado.</p>
+      </main>
+
+    </div>
+
+    <a href="https://wa.me/message/DQJBWVDS3BJ4N1" target="_blank" class="whatsapp-button" title="Fale com Rodrigo Online">
+      <img src="wattslogo.png" alt="WhatsApp Icon" class="whatsapp-icon">
+      <span>Rodrigo Online</span>
+    </a>
+
+    <div id="video-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <button id="close-modal" class="close-button">&times;</button>
+        <div id="modal-video-player" class="video-player-container"></div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>Telefone para contato: (11) 91607 2188</p>
+      <p>&copy; <span id="current-year"></span> KIIBARATO | Todos os direitos reservados.</p>
+      <p>Feito pela <a href="https://www.instagram.com/a_provados/" target="_blank" rel="noopener noreferrer">Agencia Aprovados</a></p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+
+  </body>
+</html>
