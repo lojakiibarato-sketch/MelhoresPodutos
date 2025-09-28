@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KIIBARATO - Achadinhos Exclusivos</title>
@@ -8,55 +8,663 @@
     <link rel="icon" href="logo.png" type="image/png">
     <link rel="apple-touch-icon" href="logo.png">
 
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
+
+    <style>
+        /* style.css (VERSÃO FINAL COM ESPAÇAMENTO HARMÔNICO) - NENHUMA ALTERAÇÃO REALIZADA AQUI */
+        :root {
+            --background-color: #121212;
+            --card-background: #1e1e1e;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a0;
+            --accent-color: #ff9500;
+            --accent-rgb: 255, 149, 0;
+            --border-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* --- BRANDING (AGORA O CONTAINER PRINCIPAL DO TOPO) --- */
+        .branding-area {
+            position: relative;
+            text-align: center;
+            padding-top: 16px;
+            padding-bottom: 32px;
+        }
+
+        /* --- BOTÃO COMPARTILHAR (POSICIONADO DENTRO DA BRANDING-AREA) --- */
+        .share-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .share-button:hover {
+            background-color: var(--border-color);
+            transform: scale(1.1);
+        }
+
+        .share-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .main-logo {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+            margin-bottom: 16px;
+            border-radius: 24px;
+        }
+
+        .main-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--accent-color);
+        }
+
+        .main-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- BUSCA --- */
+        .search-container {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: var(--text-secondary);
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 14px 16px 14px 48px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-background);
+            font-size: 16px;
+            color: var(--text-primary);
+            outline: none;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        #search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        #search-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.3);
+        }
+
+        /* --- GRADE DE PRODUTOS --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .product-card {
+            background-color: var(--card-background);
+            border-radius: 18px;
+            overflow: hidden;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(var(--accent-rgb), 0.5);
+            box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.1);
+        }
+
+        .media-container {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            background-color: #333;
+        }
+
+        .media-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            padding: 0;
+        }
+
+        .play-button:hover {
+            background-color: rgba(var(--accent-rgb), 0.8);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        .info-container {
+            padding: 12px;
+        }
+
+        .product-id {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 500;
+            overflow: hidden;
+            color: var(--text-primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 8px;
+            color: var(--accent-color);
+        }
+
+        /* --- BOTÃO WHATSAPP --- */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: #121212;
+            padding: 12px 20px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #ffae42;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .whatsapp-button .whatsapp-icon {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* --- MODAL DE VÍDEO --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .modal-content {
+            background-color: var(--background-color);
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-player-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+        }
+
+        .video-player-container iframe,
+        .video-player-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- RODAPÉ --- */
+        .site-footer {
+            width: 100%;
+            padding: 32px 16px;
+            margin-top: 64px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .site-footer p {
+            margin-bottom: 8px;
+        }
+
+        .site-footer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .site-footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .site-footer a:hover {
+            opacity: 0.8;
+        }
+        
+        .no-results-message {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 40px 0;
+            font-size: 18px;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (min-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .main-title {
+                font-size: 36px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
 
     <div class="container">
-      
-      <div class="branding-area">
-        <button id="share-button" class="share-button" title="Compartilhar">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M13 4.5a2.5 2.5 0 11.702 4.283l-4.423 2.212a2.513 2.513 0 010 1.01l4.423 2.212a2.5 2.5 0 11-.53 1.06l-4.423-2.212a2.5 2.5 0 110-3.132l4.423-2.212A2.5 2.5 0 0113 4.5z" /></svg>
-        </button>
-        <img src="logo.png" alt="Logo KIIBARATO" class="main-logo">
-        <h2 class="main-title">Os Achadinhos Mais Exclusivos da Internet</h2>
-        <p class="main-subtitle">Qualidade e preço justo, selecionados a dedo para você!</p>
-      </div>
-
-      <main>
-        <div class="search-container">
-          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
-          <input type="text" id="search-input" placeholder="Procure pela numeração...">
+        
+        <div class="branding-area">
+            <button id="share-button" class="share-button" title="Compartilhar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M13 4.5a2.5 2.5 0 11.702 4.283l-4.423 2.212a2.513 2.513 0 010 1.01l4.423 2.212a2.5 2.5 0 11-.53 1.06l-4.423-2.212a2.5 2.5 0 110-3.132l4.423-2.212A2.5 2.5 0 0113 4.5z" /></svg>
+            </button>
+            <img src="logo.png" alt="Logo KIIBARATO" class="main-logo">
+            <h2 class="main-title">Os Achadinhos Mais Exclusivos da Internet</h2>
+            <p class="main-subtitle">Qualidade e preço justo, selecionados a dedo para você!</p>
         </div>
-        <div id="product-grid" class="product-grid"></div>
-        <p id="no-results" class="no-results-message" style="display: none;">Nenhum produto encontrado.</p>
-      </main>
+
+        <main>
+            <div class="search-container">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
+                <input type="text" id="search-input" placeholder="Procure pela numeração...">
+            </div>
+            <div id="product-grid" class="product-grid"></div>
+            <p id="no-results" class="no-results-message" style="display: none;">Nenhum produto encontrado.</p>
+        </main>
 
     </div>
 
     <a href="https://wa.me/message/DQJBWVDS3BJ4N1" target="_blank" class="whatsapp-button" title="Fale com Rodrigo Online">
-      <img src="wattslogo.png" alt="WhatsApp Icon" class="whatsapp-icon">
-      <span>Rodrigo Online</span>
+        <img src="wattslogo.png" alt="WhatsApp Icon" class="whatsapp-icon">
+        <span>Rodrigo Online</span>
     </a>
 
     <div id="video-modal" class="modal-overlay hidden">
-      <div class="modal-content">
-        <button id="close-modal" class="close-button">&times;</button>
-        <div id="modal-video-player" class="video-player-container"></div>
-      </div>
+        <div class="modal-content">
+            <button id="close-modal" class="close-button">&times;</button>
+            <div id="modal-video-player" class="video-player-container"></div>
+        </div>
     </div>
 
     <footer class="site-footer">
-      <p>Telefone para contato: (11) 91607 2188</p>
-      <p>&copy; <span id="current-year"></span> KIIBARATO | Todos os direitos reservados.</p>
-      <p>Feito pela <a href="https://www.instagram.com/a_provados/" target="_blank" rel="noopener noreferrer">Agencia Aprovados</a></p>
+        <p>Telefone para contato: (11) 91607 2188</p>
+        <p>&copy; <span id="current-year">2025</span> KIIBARATO | Todos os direitos reservados.</p>
+        <p>Feito pela <a href="https://www.instagram.com/a_provados/" target="_blank" rel="noopener noreferrer">Agencia Aprovados</a></p>
     </footer>
 
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // data.js (GUIA DEFINITIVO DE MÍDIA)
+        const products = [
+            // --- EXEMPLO 1: Imagem Local e Vídeo Local ---
+            {
+                id: "Nº1",
+                name: "Mini Ar Condicionado Climatizador",
+                price: "38,99",
+                storeLink: "https://s.shopee.com.br/9Us2WKNHus",
+                localImage: "umidificapor 01.jpg", // Nome do arquivo na sua pasta
+                linkImage: "",                     // Vazio, pois estamos usando o local
+                localVideo: "",    // Nome do arquivo na sua pasta
+                linkVideo: "https://down-bs-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6kfkp-lose2ob4n42d42.16000081701526037.mp4"                      // Vazio, pois estamos usando o local
+            },
+            // --- EXEMPLO 2: Imagem de Link Externo e Vídeo de Link Externo ---
+            {
+                id: "Nº2",
+                name: "2 Pino Performance Dropset Academia",
+                price: "92,00",
+                storeLink: "https://s.shopee.com.br/3VbD1MLXD5",
+                localImage: "",
+                linkImage: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m5aacl9rfeluf1.webp", // URL completa da imagem
+                localVideo: "",
+                linkVideo: "https://down-zl-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6kfko-m5aankfcuphh1b.16000081737477754.mp4" // URL completa do vídeo
+            },
+            // --- EXEMPLO 3: Imagem Local, SEM VÍDEO ---
+            {
+                id: "Nº3",
+                name: "IPHONE 14 ORIGINAL NOVO",
+                price: "3,720",
+                storeLink: "https://s.shopee.com.br/30ewVkQvlR",
+                localImage: "ícones.png",
+                linkImage: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m1xqfiowrljled@resize_w900_nl.webp",
+                localVideo: "",
+                linkVideo: "https://down-ws-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6kfkr-m1xr80xklhnu44.16000081730180938.mp4"
+            },
+            // --- EXEMPLO 4: Imagem de Link Externo, com Vídeo Local ---
+            {
+                id: "Nº4",
+                name: "Kit 2x Whey Pro 1kg Max Titanium",
+                price: "169,00",
+                storeLink: "https://s.shopee.com.br/6fYEnEd48M",
+                localImage: "",
+                linkImage: "https://down-br.img.susercontent.com/file/br-11134211-7r98o-m9lrst2wqepub7@resize_w900_nl.webp",
+                localVideo: "",
+                linkVideo: "https://down-zl-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6kfko-m8kvz9absnap81.16000081744656675.mp4"
+            },
+            // Adicione mais produtos aqui seguindo a mesma estrutura...
+            {
+                id: "Nº5",
+                name: "Teclado Mecanico Gamer TGT Sherman",
+                price: "99,00",
+                storeLink: "https://s.shopee.com.br/1BDIL7Sb4B",
+                localImage: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-mb84nf9vcqz355.webp",
+                linkImage: "",
+                localVideo: "",
+                linkVideo: "https://down-bs-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6kfko-lyp6gf7wok01ac.16000081723124024.mp4"
+            },
 
-  </body>
+            {
+                id: "Nº6",
+                name: "Câmera WIFI esportiva Full HD 4K à prova d'água",
+                price: "80,00",
+                storeLink: "https://s.shopee.com.br/6prf5qCTml",
+                localImage: "ícones.png",
+                linkImage: "https://down-br.img.susercontent.com/file/sg-11134201-7rcex-ltwteq0z41hp99.webp",
+                localVideo: "",
+                linkVideo: "https://down-bs-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6kfko-m4knl3ogfo01a7.16000081735925596.mp4"
+            },
+            
+            {
+                id: "Nº8",
+                name: "Carregador Portátil Powerbank Para iPhone 11/12 / 13 /14Pro Max Mini bateria externa Portátil Powerbank",
+                price: "40,00",
+                storeLink: "https://s.shopee.com.br/8AN2aPVikk",
+                localImage: "ícones.png",
+                linkImage: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-luz6ryr345uc17@resize_w900_nl.webp",
+                localVideo: "",
+                linkVideo: "https://down-bs-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6kfks-m969eqv5dwl58f.16000081745950474.mp4"
+            },
+            /*
+            {
+                id: "Nº9",
+                name: "Carregador Portátil Powerbank Para iPhone 11/12 / 13 /14Pro Max Mini bateria externa Portátil Powerbank",
+                price: "11",
+                storeLink: "11",
+                localImage: "11",
+                linkImage: "11",
+                localVideo: "11",
+                linkVideo: "11"
+            },
+            */
+        ];
+    </script>
+    <script>
+        // script.js (LÓGICA ATUALIZADA)
+        document.addEventListener('DOMContentLoaded', () => {
+            // Elementos da página
+            const searchInput = document.getElementById('search-input');
+            const productGrid = document.getElementById('product-grid');
+            const noResultsMessage = document.getElementById('no-results');
+            const shareButton = document.getElementById('share-button');
+            const currentYearSpan = document.getElementById('current-year');
+            
+            // Elementos do Modal
+            const videoModal = document.getElementById('video-modal');
+            const closeModalButton = document.getElementById('close-modal');
+            const modalVideoPlayer = document.getElementById('modal-video-player');
+
+            // Atualiza o ano no rodapé
+            if(currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            // Função principal para renderizar os produtos
+            function renderProducts(productsToRender) {
+                productGrid.innerHTML = '';
+                
+                if (productsToRender.length === 0) {
+                    noResultsMessage.style.display = 'block';
+                    return;
+                }
+                
+                noResultsMessage.style.display = 'none';
+
+                productsToRender.forEach(product => {
+                    // --- NOVA LÓGICA INTELIGENTE DE MÍDIA ---
+                    // 1. Define a fonte da imagem, priorizando o link externo.
+                    const finalImageSrc = product.linkImage || product.localImage || 'placeholder.png'; // Adicionado um fallback
+
+                    // 2. Define a fonte do vídeo, priorizando o link externo.
+                    const finalVideoSrc = product.linkVideo || product.localVideo;
+
+                    // 3. Cria o botão de play apenas se uma fonte de vídeo for encontrada.
+                    let playButtonHTML = '';
+                    if (finalVideoSrc) {
+                        playButtonHTML = `
+                            <button class="play-button" data-video-src="${finalVideoSrc}" aria-label="Play video">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm14.024-.983a1.125 1.125 0 010 1.966l-5.603 3.113A1.125 1.125 0 019 15.113V8.887c0-.857.921-1.4 1.671-.983l5.603 3.113z" clip-rule="evenodd" /></svg>
+                            </button>
+                        `;
+                    }
+                    // --- FIM DA NOVA LÓGICA ---
+
+                    const productCard = document.createElement('div');
+                    // O wrapper foi removido pois não estava no CSS original, simplificando a estrutura.
+                    productCard.innerHTML = `
+                        <a href="${product.storeLink}" target="_blank" class="product-card" rel="noopener noreferrer">
+                            <div class="media-container">
+                                <img class="media-image" src="${finalImageSrc}" alt="${product.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/300?text=Imagem+Indisponível';">
+                                ${playButtonHTML}
+                            </div>
+                            <div class="info-container">
+                                <p class="product-id">${product.id}</p>
+                                <h3 class="product-name">${product.name}</h3>
+                                <p class="product-price">R$ ${product.price}</p>
+                            </div>
+                        </a>
+                    `;
+                    productGrid.appendChild(productCard);
+                });
+            }
+
+            // --- LÓGICA DO MODAL DE VÍDEO (PERMANECE A MESMA) ---
+            function openModal(videoSrc) {
+                let playerHTML = '';
+                // Verifica se é um vídeo do YouTube ou um arquivo direto (.mp4, .webm, etc)
+                if (videoSrc.includes('youtube.com/embed')) {
+                    playerHTML = `<iframe src="${videoSrc}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                } else {
+                    playerHTML = `<video src="${videoSrc}" controls autoplay loop playsinline></video>`;
+                }
+                modalVideoPlayer.innerHTML = playerHTML;
+                videoModal.classList.remove('hidden');
+            }
+
+            function closeModal() {
+                modalVideoPlayer.innerHTML = ''; // Importante para parar o vídeo
+                videoModal.classList.add('hidden');
+            }
+
+            // Event listener para abrir o modal (usando delegação de eventos para performance)
+            productGrid.addEventListener('click', event => {
+                const playButton = event.target.closest('.play-button');
+                if (playButton) {
+                    event.preventDefault(); // Impede que o clique no botão ative o link do card
+                    const videoSrc = playButton.dataset.videoSrc;
+                    if (videoSrc) {
+                        openModal(videoSrc);
+                    }
+                }
+            });
+
+            closeModalButton.addEventListener('click', closeModal);
+            videoModal.addEventListener('click', event => {
+                // Fecha o modal se clicar no fundo (overlay)
+                if (event.target === videoModal) {
+                    closeModal();
+                }
+            });
+            
+            // Fecha o modal com a tecla 'Escape'
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !videoModal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+
+            // --- FILTRO DE BUSCA (PERMANECE O MESMO) ---
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const filteredProducts = products.filter(p => p.id.toLowerCase().includes(searchTerm));
+                renderProducts(filteredProducts);
+            });
+            
+            // --- BOTÃO COMPARTILHAR (PERMANECE O MESMO) ---
+            shareButton.addEventListener('click', async () => {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({ 
+                            title: 'KIIBARATO - Achadinhos Exclusivos', 
+                            text: 'Confira os achadinhos mais exclusivos da internet!', 
+                            url: window.location.href 
+                        });
+                    } catch (err) {
+                        console.error('Erro ao compartilhar:', err);
+                    }
+                } else {
+                    // Fallback para desktop: copiar para a área de transferência
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        alert('Link copiado para a área de transferência!');
+                    }).catch(err => {
+                        console.error('Falha ao copiar o link:', err);
+                        alert('Não foi possível copiar o link.');
+                    });
+                }
+            });
+
+            // Renderização inicial
+            renderProducts(products);
+        });
+    </script>
+</body>
 </html>
