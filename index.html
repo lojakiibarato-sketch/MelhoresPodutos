@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* style.css (VERSÃO FINAL COM ESPAÇAMENTO HARMÔNICO) - NENHUMA ALTERAÇÃO REALIZADA AQUI */
+        /* style.css (VERSÃO ATUALIZADA) */
         :root {
             --background-color: #121212;
             --card-background: #1e1e1e;
@@ -22,6 +22,7 @@
             --accent-color: #ff9500;
             --accent-rgb: 255, 149, 0;
             --border-color: #333333;
+            --whatsapp-color: #25D366; /* Cor oficial WhatsApp */
         }
 
         * {
@@ -43,48 +44,54 @@
             padding: 16px;
         }
 
-        /* --- BRANDING (AGORA O CONTAINER PRINCIPAL DO TOPO) --- */
+        /* --- BRANDING --- */
         .branding-area {
             position: relative;
             text-align: center;
             padding-top: 16px;
             padding-bottom: 32px;
-        }
-
-        /* --- BOTÃO COMPARTILHAR (POSICIONADO DENTRO DA BRANDING-AREA) --- */
-        .share-button {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .share-button:hover {
-            background-color: var(--border-color);
-            transform: scale(1.1);
-        }
-
-        .share-button svg {
-            width: 20px;
-            height: 20px;
         }
 
         .main-logo {
             width: 220px;
             height: 220px;
             object-fit: contain;
-            margin-bottom: 16px;
+            margin-bottom: 12px; /* Ajustado para dar espaço ao botão */
             border-radius: 24px;
+        }
+
+        /* --- NOVO BOTÃO DE COMPARTILHAR NO TOPO --- */
+        .btn-share-header {
+            background-color: var(--whatsapp-color);
+            color: #fff;
+            border: none;
+            border-radius: 50px; /* Formato pílula moderno */
+            padding: 8px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px; /* Espaço para o título */
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-share-header:hover {
+            background-color: #1ebd56;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-share-header svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
         }
 
         .main-title {
@@ -233,7 +240,7 @@
             color: var(--accent-color);
         }
 
-        /* --- BOTÃO WHATSAPP --- */
+        /* --- BOTÃO WHATSAPP FLUTUANTE (RODAPÉ) --- */
         .whatsapp-button {
             position: fixed;
             bottom: 20px;
@@ -387,10 +394,13 @@
     <div class="container">
         
         <div class="branding-area">
-            <button id="share-button" class="share-button" title="Compartilhar">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M13 4.5a2.5 2.5 0 11.702 4.283l-4.423 2.212a2.513 2.513 0 010 1.01l4.423 2.212a2.5 2.5 0 11-.53 1.06l-4.423-2.212a2.5 2.5 0 110-3.132l4.423-2.212A2.5 2.5 0 0113 4.5z" /></svg>
-            </button>
             <img src="logo.png" alt="Logo KIIBARATO" class="main-logo">
+            
+            <button id="btn-share-header" class="btn-share-header" title="Compartilhar no WhatsApp">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.0117 2.00244C6.50574 2.00244 2.02344 6.47869 2.02344 11.9846C2.02344 13.7456 2.48057 15.4616 3.35557 16.9806L2.00244 21.9213L7.05832 20.5976C8.52657 21.3989 10.2224 21.8384 12.0084 21.8396H12.0126C17.5143 21.8396 21.9957 17.3624 21.9957 11.8574C21.9948 9.22469 20.9701 6.74969 19.1093 4.88807C17.2477 3.02732 14.7736 2.00244 12.0117 2.00244ZM12.0126 20.1654C10.4242 20.1654 8.87532 19.7404 7.51457 18.9334L7.19157 18.7417L3.9062 19.6021L4.78307 16.4021L4.57307 16.0671C3.68957 14.6621 3.22432 13.0293 3.2252 11.3651C3.2252 6.52044 7.16732 2.57832 12.0161 2.57832C14.3639 2.57919 16.5707 3.49369 18.2304 5.15344C19.8902 6.81407 20.8038 9.02007 20.8038 11.3678C20.8038 16.2133 16.8617 20.1654 12.0126 20.1654ZM16.9209 14.3429C16.6521 14.2081 15.3304 13.5596 15.0837 13.4704C14.837 13.3803 14.6576 13.3356 14.4782 13.6044C14.2988 13.8731 13.7831 14.4781 13.6263 14.6574C13.4695 14.8368 13.3126 14.8587 13.0439 14.7239C12.7751 14.5892 11.9092 14.3057 10.8829 13.3908C10.0768 12.6719 9.53244 11.7844 9.37557 11.5157C9.21869 11.2469 9.35869 11.1017 9.49344 10.9678C9.61332 10.8479 9.76032 10.6554 9.89507 10.4986C10.0298 10.3417 10.0744 10.2296 10.1637 10.0502C10.2529 9.87082 10.2083 9.71394 10.1409 9.57919C10.0736 9.44444 9.53507 8.12182 9.31094 7.58332C9.09394 7.06057 8.87344 7.13057 8.7072 7.12444C8.55232 7.11832 8.37294 7.11832 8.19357 7.11832C8.01419 7.11832 7.72269 7.18569 7.47607 7.45444C7.22944 7.72319 6.53382 8.37407 6.53382 9.69594C6.53382 11.0187 7.49707 12.2961 7.63182 12.4754C7.76657 12.6548 9.5132 15.3486 12.1884 16.5033C12.8248 16.7781 13.3214 16.9417 13.7117 17.0659C14.3394 17.2654 14.9128 17.2366 15.3672 17.1692C15.8732 17.0931 16.9209 16.5342 17.1388 15.9292C17.3567 15.3242 17.3567 14.8091 17.2893 14.6971C17.222 14.5842 17.0554 14.5221 16.7867 14.3873L16.9209 14.3429Z"/></svg>
+                Compartilhar
+            </button>
+
             <h2 class="main-title">Os Achadinhos Mais Exclusivos da Internet</h2>
             <p class="main-subtitle">Qualidade e preço justo, selecionados a dedo para você!</p>
         </div>
@@ -434,9 +444,9 @@
                 price: "38,99",
                 storeLink: "https://s.shopee.com.br/9Us2WKNHus",
                 localImage: "", // Nome do arquivo na sua pasta
-                linkImage: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-lr7dldjdnc57a8.webp",                     // Vazio, pois estamos usando o local
+                linkImage: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-lr7dldjdnc57a8.webp",                      // Vazio, pois estamos usando o local
                 localVideo: "",    // Nome do arquivo na sua pasta
-                linkVideo: "https://down-bs-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6kfkp-lose2ob4n42d42.16000081701526037.mp4"                      // Vazio, pois estamos usando o local
+                linkVideo: "https://down-bs-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6kfkp-lose2ob4n42d42.16000081701526037.mp4"                       // Vazio, pois estamos usando o local
             },
             // --- EXEMPLO 2: Imagem de Link Externo e Vídeo de Link Externo ---
             {
@@ -548,18 +558,6 @@
                 localVideo: "11",
                 linkVideo: "https://down-ws-br.vod.susercontent.com/api/v4/11110103/mms/br-11110103-6v5do-mg9l1x63b75x44.16000051761406340.mp4"
             },
-              /*
-            {
-                id: "Nº10",
-                name: "TITULO",
-                price: "59,99",
-                storeLink: "SHOPE",
-                localImage: "11",
-                linkImage: "11",
-                localVideo: "11",
-                linkVideo: "11"
-            },
-            */
             
         ];
     </script>
@@ -570,7 +568,10 @@
             const searchInput = document.getElementById('search-input');
             const productGrid = document.getElementById('product-grid');
             const noResultsMessage = document.getElementById('no-results');
-            const shareButton = document.getElementById('share-button');
+            
+            // NOVO SELETOR PARA O BOTÃO WHATSAPP
+            const btnShareHeader = document.getElementById('btn-share-header');
+
             const currentYearSpan = document.getElementById('current-year');
             
             // Elementos do Modal
@@ -684,28 +685,20 @@
                 renderProducts(filteredProducts);
             });
             
-            // --- BOTÃO COMPARTILHAR (PERMANECE O MESMO) ---
-            shareButton.addEventListener('click', async () => {
-                if (navigator.share) {
-                    try {
-                        await navigator.share({ 
-                            title: 'KIIBARATO - Achadinhos Exclusivos', 
-                            text: 'Confira os achadinhos mais exclusivos da internet!', 
-                            url: window.location.href 
-                        });
-                    } catch (err) {
-                        console.error('Erro ao compartilhar:', err);
-                    }
-                } else {
-                    // Fallback para desktop: copiar para a área de transferência
-                    navigator.clipboard.writeText(window.location.href).then(() => {
-                        alert('Link copiado para a área de transferência!');
-                    }).catch(err => {
-                        console.error('Falha ao copiar o link:', err);
-                        alert('Não foi possível copiar o link.');
-                    });
-                }
-            });
+            // --- NOVO BOTÃO DE COMPARTILHAR WHATSAPP ---
+            if (btnShareHeader) {
+                btnShareHeader.addEventListener('click', () => {
+                    // Texto padrão e URL atual
+                    const text = encodeURIComponent("Confira os achadinhos mais exclusivos da internet!");
+                    const url = encodeURIComponent(window.location.href);
+                    
+                    // Link direto para WhatsApp Web/App
+                    const whatsappUrl = `https://wa.me/?text=${text}%20${url}`;
+                    
+                    // Abre em nova aba
+                    window.open(whatsappUrl, '_blank');
+                });
+            }
 
             // Renderização inicial
             renderProducts(products);
@@ -713,4 +706,3 @@
     </script>
 </body>
 </html>
-
